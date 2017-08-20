@@ -55,13 +55,21 @@
   binaryTree.insertBSTDup(5);
   binaryTree.insertBSTDup(10);
   binaryTree.insertBSTDup(1);
+  binaryTree.insertBSTDup(3);
+  binaryTree.insertBSTDup(0);
+  binaryTree.insertBSTDup(15);
+  binaryTree.insertBSTDup(20);
   console.log("inTraversal");
   binaryTree.inTraverse(binaryTree.getRoot());
-  console.log("preTraverse");
-  binaryTree.preTraverse(binaryTree.getRoot());
-  console.log("PostTraversal");
-  binaryTree.postTraverse(binaryTree.getRoot());
+  //console.log("preTraverse");
+  //binaryTree.preTraverse(binaryTree.getRoot());
+  //console.log("PostTraversal");
+  //binaryTree.postTraverse(binaryTree.getRoot());
   console.log("Searching for: "+i,"Found: "+binaryTree.searchBST(i));
+  binaryTree.delete(i);
+  console.log("Searching for: "+i,"Found: "+binaryTree.searchBST(i));
+  console.log("inTraversal");
+  binaryTree.inTraverse(binaryTree.getRoot());
 
   //listener for the add button
   document.getElementById("add").addEventListener("click", function(){

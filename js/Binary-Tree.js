@@ -128,6 +128,8 @@ var BINARYTREE = function(){
 
     var p = null;
 
+    //var num = 0;
+
     BINARYNODE.predefinedNode.setInfo(i);
 
     if(this.root != null){
@@ -135,14 +137,19 @@ var BINARYTREE = function(){
       while(p != null){
         if(BINARYNODE.predefinedNode.compare(p) < 0){
           p = p.getLeft();
+          //num++;
         }else if(BINARYNODE.predefinedNode.compare(p) > 0){
           p = p.getRight();
+          //num++;
         }else{
+          //console.log("Total Comparisons: "+num);
           return p;
         }
       }
 
     }
+
+    //console.log(num);
 
     return null;
 
@@ -155,6 +162,68 @@ var BINARYTREE = function(){
       node.visit();
       this.inTraverse(node.getRight());
     }
+  };
+
+  //delete a node
+  //deletes the first occurrence of i in the tree
+  this.delete = function(i){
+    var s, t, v;
+    var found = false;
+
+    var r = new BINARYNODE.Node(i);
+    var p = this.root;
+    var q = null;
+    //start the loop
+    while(p != null && !found){
+      if(r.compare(p) == 0){
+        found = true;
+      }else{
+        q = p;
+        if(r.compare(p) < 0){
+          p = p.getLeft();
+        }else{
+          p = p.getRight();
+        }
+      }
+    }
+    //end of loop
+
+    //if found
+    if(found){
+
+      if(p.getLeft() == null){
+        v = p.getRight();
+      }else if(p.getRight() == null){
+        v = p.getLeft();
+      }else{
+        t = p;
+        v = p.getRight();
+        s = v.getLeft();
+        //loop
+        while(s != null){
+          t = v;
+          v = s;
+          s = v.getLeft();
+        }
+        //end of loop
+        if(t != p){
+          t.setLeft(v.getRight());
+          v.setRight(p.getRight());
+        }
+        v.setLeft(p.getLeft());
+      }
+      //end of else
+
+      if(q == null){
+        this.root = v;
+      }else if(p == q.getLeft()){
+        q.setLeft(v);
+      }else{
+        q.setRight(v);
+      }
+
+    }
+
   };
 
   //pretraverse
