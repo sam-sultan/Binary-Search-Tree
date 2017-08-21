@@ -230,16 +230,16 @@ var BINARYTREE = function(){
   this.preTraverse = function(node){
     if(node != null){
       node.visit();
-      this.inTraverse(node.getLeft());
-      this.inTraverse(node.getRight());
+      this.preTraverse(node.getLeft());
+      this.preTraverse(node.getRight());
     }
   };
 
   //postTraverse
   this.postTraverse = function(node){
     if(node != null){
-      this.inTraverse(node.getLeft());
-      this.inTraverse(node.getRight());
+      this.postTraverse(node.getLeft());
+      this.postTraverse(node.getRight());
       node.visit();
     }
   };
